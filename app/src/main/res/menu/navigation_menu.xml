@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/home_nav_title"
+        android:icon="@drawable/ic_home_icon"
+        android:id="@+id/homeFragment" />
+    <item android:title="@string/people_nav_title"
+        android:icon="@drawable/ic_people_icon"
+        android:id="@+id/peopleFragment" />
+    <item android:title="@string/gifts_nav_title"
+        android:icon="@drawable/ic_gifts_icon"
+        android:id="@+id/giftsFragment" />
+</menu>
