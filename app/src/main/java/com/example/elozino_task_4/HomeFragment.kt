@@ -5,29 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.MarginPageTransformer
+import androidx.viewpager2.widget.ViewPager2
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,23 +21,59 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //list of congratulatory images
+        val messageArray = listOf(
+            R.string.sonia_message,
+            R.string.ronke_message,
+            R.string.victor_message
+        )
+
+        //list of celebrants' images
+        val celebrantImages = listOf(
+            R.drawable.person1,
+            R.drawable.person2,
+            R.drawable.person3
+        )
+
+        //list of upcoming birthday celebrants' names
+        val nameArray = listOf(
+            "Ola Machiavelli",
+            "Samuel Garfield",
+            "Kome Holmes",
+            "Omolade Rogers"
+        )
+
+        //list of upcoming birthday celebrants' images
+        val images = listOf(
+            R.drawable.ola,
+            R.drawable.samuel,
+            R.drawable.holmes,
+            R.drawable.omolade
+        )
+
+        val viewPagerAdapter = ViewPagerAdapter(messageArray, celebrantImages)
+        val viewPager = view.findViewById<ViewPager2>(R.id.view_pager)
+        viewPager.adapter = viewPagerAdapter
+
+        //set scroll transformation on view pager
+        viewPager.setPadding(88, 0, 88, 0)
+        viewPager.clipToPadding = false
+        viewPager.clipChildren = false
+        viewPager.offscreenPageLimit = 3
+        viewPager.getChildAt(0).overScrollMode = View.OVER_SCROLL_NEVER
+        val viewPageTransformer = CompositePageTransformer()
+        viewPageTransformer.addTransformer(MarginPageTransformer(45))
+        viewPageTransformer.addTransformer { page, position ->
+            page.scaleY = 1 - (0.25f * kotlin.math.abs(position))
+        }
+        viewPager.setPageTransformer(viewPageTransformer)
+
+        val recyclerViewAdapter = RecyclerViewAdapter(nameArray, images)
+        val birthdayRecycler = view.findViewById<RecyclerView>(R.id.recycler_view)
+        birthdayRecycler.adapter = recyclerViewAdapter
+        birthdayRecycler.layoutManager = LinearLayoutManager(this.context)
     }
 }

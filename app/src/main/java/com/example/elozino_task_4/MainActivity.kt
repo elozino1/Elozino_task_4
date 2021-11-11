@@ -2,42 +2,39 @@ package com.example.elozino_task_4
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
 
 class MainActivity : AppCompatActivity() {
+    var homeFragment: HomeFragment = HomeFragment()
+    var giftFragment: GiftFragment = GiftFragment()
+    var peopleFragment: PeopleFragment = PeopleFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val messageArray = listOf(
-            R.string.victor_message,
-            R.string.ronke_message,
-            R.string.jude_message
-        )
+        currentFragment(homeFragment)
 
-        val nameArray = listOf(
-            "Ola Machiavelli",
-            "Samuel Garfield",
-            "Kome Holmes",
-            "Omolade Rogers"
-        )
+        val homeFrag = findViewById<BottomNavigationItemView>(R.id.home_fragment)
+        homeFrag.setOnClickListener {
+            currentFragment(homeFragment)
+        }
 
-        val images = listOf(
-            R.drawable.ola,
-            R.drawable.samuel,
-            R.drawable.holmes,
-            R.drawable.omolade
-        )
+        val peopleFrag = findViewById<BottomNavigationItemView>(R.id.people_fragment)
+        peopleFrag.setOnClickListener {
+            currentFragment(peopleFragment)
+        }
 
-        val viewPagerAdapter = ViewPagerAdapter(messageArray)
-        val viewPager = findViewById<ViewPager2>(R.id.view_pager)
-        viewPager.adapter = viewPagerAdapter
+        val giftFrag = findViewById<BottomNavigationItemView>(R.id.gifts_fragment)
+        giftFrag.setOnClickListener {
+            currentFragment(giftFragment)
+        }
+    }
 
-        val recyclerViewAdapter = RecyclerViewAdapter(nameArray, images)
-        val birthdayRecycler = findViewById<RecyclerView>(R.id.recycler_view)
-        birthdayRecycler.adapter = recyclerViewAdapter
-        birthdayRecycler.layoutManager = LinearLayoutManager(this)
+    private fun currentFragment(fragment: Fragment) {
+        if(fragment != null) {
+            supportFragmentManager.beginTransaction().replace(R.id.frame, fragment).commit()
+        }
     }
 }

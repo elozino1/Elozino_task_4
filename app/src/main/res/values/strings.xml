@@ -7,15 +7,17 @@
 
     <!-- array of string of different birthday messages -->
 
-        <string name="victor_message">It\'s Victor\'s birthday.</string>
-        <string name="ronke_message">It\'s Ronke\'s birthday today.</string>
-        <string name="jude_message">Pop the champagne today, it\'s your birthday</string>
+    <string name="sonia_message">It\'s Sonia\'s birthday.</string>
+    <string name="ronke_message">It\'s Ronke\'s birthday today.</string>
+    <string name="victor_message">It\'s Victor\'s birthday</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="gift_fragment_text">Gift Fragment</string>
     <string name="upcoming_birthdays">Upcoming Birthdays</string>
     <string name="home_nav_title">Home</string>
     <string name="people_nav_title">People</string>
     <string name="gifts_nav_title">Gifts</string>
+    <string name="people_fragment_text">People Fragment</string>
+    <string name="search_for_celebrants">search for celebrants...</string>
 </resources>
