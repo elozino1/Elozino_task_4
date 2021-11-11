@@ -7,11 +7,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ViewPagerAdapter (val messages: List<Int>, val images: List<Int>) : RecyclerView.Adapter<ViewPagerAdapter.ViewHolder>() {
+class ViewPagerAdapter (private val messages: List<Int>, private val images: List<Int>) : RecyclerView.Adapter<ViewPagerAdapter.ViewHolder>() {
 
     inner class ViewHolder(cardView: View) : RecyclerView.ViewHolder(cardView) {
-        val birthdayMessage: TextView = cardView.findViewById(R.id.birthday_message)
-        val imageHolder: ImageView = cardView.findViewById(R.id.image)
+        private val birthdayMessage: TextView = cardView.findViewById(R.id.birthday_message)
+        private val imageHolder: ImageView = cardView.findViewById(R.id.image)
+
+        fun initialize(message: Int, image:Int) {
+            birthdayMessage.setText(message)
+            imageHolder.setImageResource(image)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,8 +28,7 @@ class ViewPagerAdapter (val messages: List<Int>, val images: List<Int>) : Recycl
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val message = messages[position]
         val image = images[position]
-        holder.birthdayMessage.setText(message)
-        holder.imageHolder.setImageResource(image)
+        holder.initialize(message, image)
     }
 
     override fun getItemCount(): Int {

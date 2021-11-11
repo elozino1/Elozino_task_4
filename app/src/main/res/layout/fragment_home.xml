@@ -46,7 +46,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="50dp"
+        android:scrollbars="none">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -56,7 +57,8 @@
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
-                android:paddingLeft="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:hint="@string/search_for_celebrants"
                 android:queryBackground="@null"
                 android:background="@drawable/search_view_background"
@@ -69,7 +71,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:paddingLeft="6dp"
                 app:layout_constraintTop_toBottomOf="@id/search_view"
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
@@ -81,7 +82,6 @@
                 android:textSize="18sp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/montserrat"
-                android:layout_marginStart="15dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"

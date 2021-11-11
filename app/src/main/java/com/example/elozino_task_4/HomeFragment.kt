@@ -59,7 +59,7 @@ class HomeFragment : Fragment() {
         viewPager.adapter = viewPagerAdapter
 
         //set scroll transformation on view pager
-        viewPager.setPadding(88, 0, 88, 0)
+        viewPager.setPadding(80, 0, 80, 0)
         viewPager.clipToPadding = false
         viewPager.clipChildren = false
         viewPager.offscreenPageLimit = 3
